@@ -27,8 +27,20 @@ class Modules {
     }
 
     public function init(){
+        add_action( 'elementor/elements/categories_registered', array( $this, 'add_elementor_widget_categories' ) );
         add_action( 'elementor/init', array( $this, 'widgets_registered' ) );
         add_action( 'elementor/widget/posts/skins_init',  array( $this,'skin_registered'), 1 );
+    }
+
+    public function add_elementor_widget_categories( $elements_manager ) {
+        $elements_manager->add_category(
+            'custo',
+            [
+                'title' => __( 'Elementor Custom', 'plugin-name' ),
+                'icon' => 'fa fa-plug',
+            ],
+            1 // Position
+        );
     }
 
     public function skin_registered($widget) {
