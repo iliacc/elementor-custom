@@ -122,7 +122,6 @@ class Widget_Push_Products extends Widget_Base
             'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
         ]);
 
-        // Je récupère mes catégories de produits ici
         $orderby = 'name';
         $order = 'asc';
         $hide_empty = false;
@@ -131,23 +130,19 @@ class Widget_Push_Products extends Widget_Base
             'order' => $order,
             'hide_empty' => $hide_empty,
         );
-        // Je fais ma variable qui va me ressortir mes catégories de produits ici
+
         $product_categories = get_terms('product_cat', $cat_args);
 
-        // On vérifie que ça soit un tableau
         if (is_array($product_categories)) {
 
-            // On crée ici le tableau avec les options
             $choice_category_options = [];
-            // On boucle pour le remplir
+
             foreach ($product_categories as $product_category) {
                 if ($product_category) {
-                    // Clé = ID taxo, ou slug comme tu préfères
                     $choice_category_options[$product_category->term_id] = $product_category->name;
                 }
             }
-
-            // Je rajoute mon add control pour créer un select sur Elementor :
+            
             $this->add_control('choice_category', [
                 'label' => __('Categories'),
                 'type' => Controls_Manager::SELECT,
