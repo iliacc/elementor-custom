@@ -15,9 +15,9 @@ class Modules {
     public function __construct() {
         // Folder name as modules
 
-        //$this->modules = [
-        //    'example',
-        //];
+        $this->modules = [
+            'push-products',
+        ];
     }
 
     public static function get_instance() {
@@ -34,7 +34,7 @@ class Modules {
 
     public function add_elementor_widget_categories( $elements_manager ) {
         $elements_manager->add_category(
-            'custo',
+            'custom',
             [
                 'title' => __( 'Elementor Custom', 'plugin-name' ),
                 'icon' => 'fa fa-plug',
