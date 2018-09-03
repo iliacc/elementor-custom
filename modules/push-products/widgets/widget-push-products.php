@@ -201,11 +201,15 @@ class Widget_Push_Products extends Widget_Base
 
         $products = new \WP_Query($args);
 
+
+
         if ($products->have_posts()) {
-            while ($products->have_posts()) {
-                $products->the_post();
-                echo get_the_title();
-            }
+            echo '<ul class="products columns-3">';
+                while ($products->have_posts()) {
+                    $products->the_post();
+                    wc_get_template( 'content-product.php' );
+                }
+            echo '</ul>';
         }
 
 
