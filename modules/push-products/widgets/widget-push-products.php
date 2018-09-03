@@ -142,13 +142,20 @@ class Widget_Push_Products extends Widget_Base
                     $choice_category_options[$product_category->term_id] = $product_category->name;
                 }
             }
-            
+
             $this->add_control('choice_category', [
                 'label' => __('Categories'),
                 'type' => Controls_Manager::SELECT,
                 'default' => $choice_category_options[15],
                 'options' => $choice_category_options
             ]);
+
+            $this->add_control('choice_number_product', [
+               'label' => __('Nombre de produits à afficher'),
+               'type' => Controls_Manager::NUMBER,
+               'default' => -1
+            ]);
+
         }
 
         $this->end_controls_section();
@@ -167,6 +174,7 @@ class Widget_Push_Products extends Widget_Base
         $subHeadingSize = !empty($settings['subheading_size']) ? $settings['subheading_size'] : 'fz-base';
 
         $getCategoryProducts = $settings['choice_category'];
+        $getNumberProducts = $settings['choice_number_product'];
 
         echo '<div class="main-header">';
             echo '<' . $headingHn . ' class="' . $headingSize . '" >';
@@ -180,7 +188,7 @@ class Widget_Push_Products extends Widget_Base
         $args = array(
             'post_type' => 'product',
             'post_status' => 'publish',
-            'posts_per_page' => 4,
+            'posts_per_page' => $getNumberProducts,
             'tax_query' => array(
                 array(
                     'taxonomy' => 'product_cat',
