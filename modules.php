@@ -17,6 +17,7 @@ class Modules {
 
         $this->modules = [
             'push-products',
+            'push-categories'
         ];
     }
 
